@@ -20,32 +20,18 @@
 
 
 .main-container {
-    display: grid;
+    display: flex;
     border-radius: 5px;
     grid-template-columns: repeat(8, 1fr);
+    flex-direction: column;
     height: 560px;
     /* 70px * 8 = 560px */
     width: 560px;
     overflow: hidden;
 }
 
-.files:nth-of-type(odd) .square:nth-of-type(even) {
-    background-color: #769656;
-}
-
-.files:nth-of-type(even) .square:nth-of-type(odd) {
-    background-color: #769656;
-}
-
 img {
     width: 100%;
-}
-
-.circle {
-    width: 30%;
-    height: 30%;
-    background-color: rgba(0, 0, 0, 0.15);
-    border-radius: 50%;
 }
 
 /* center childs */
@@ -53,4 +39,30 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.square-common {
+    width: 70px;
+    height: 70px;
+}
+
+.color-dark{
+    background-color: #769656;
+}
+
+.color-light {
+    background-color: #EEEED2;
+}
+
+.rank-style {
+    width: 560px;
+    height: 70px;
+    display: flex;
+}
+
+.highLight {
+    width: 30%;
+    height: 30%;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
 }
