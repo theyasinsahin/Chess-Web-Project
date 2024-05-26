@@ -1,22 +1,19 @@
-export function blackPawnMove(el) {
-    const row = Number(el.id[1]);
-    const column = el.id[0];
+export const blackPawnMove = function(square, board) {
+    const possibleMoves = [];
+    const file = square.id[0];
+    const rank = Number(square.id[1]);
 
-    hintForPawnFirstMove(row, column);
-}
-
-function hintForPawnFirstMove(row, column){
-    let hintedElements = [];
-    let newRow = row;
-    for (let i = 0; i < 2; i++) {
-        //newRow = row + 1 + i;
-        newRow--;
-        const elementToBeHigh = document.getElementById(column + newRow);
-        const span = document.createElement("span");
-        span.classList.add("highLight");
-        elementToBeHigh.appendChild(span);
-        elementToBeHigh.classList.add('flex');
-        hintedElements.push(document.getElementById(column + newRow));
+    // Black pawns move down the board, so rank decreases
+    if (rank > 1) {
+        // Single step move
+        if (!board[file][rank - 1].isPiece) {
+            possibleMoves.push(`${file}${rank - 1}`);
+            // Double step move from the initial position
+            if (rank === 7 && !board[file][rank - 2].isPiece) {
+                possibleMoves.push(`${file}${rank - 2}`);
+            }
+        }
     }
-    return hintedElements;
-}
+
+    return possibleMoves;
+};

@@ -1,22 +1,15 @@
-export function whitePawnMove(el) {
-    const row = Number(el.id[1]);
-    const column = el.id[0];
+export const whitePawnMove = function(square) {
+    const possibleMoves = [];
+    const file = square.id[0];
+    const rank = Number(square.id[1]);
 
-    hintForPawnFirstMove(row, column);
-}
-
-function hintForPawnFirstMove(row, column){
-    let hintedElements = [];
-    let newRow = row;
-    for (let i = 0; i < 2; i++) {
-        //newRow = row + 1 + i;
-        newRow++;
-        const elementToBeHigh = document.getElementById(column + newRow);
-        const span = document.createElement("span");
-        span.classList.add("highLight");
-        elementToBeHigh.appendChild(span);
-        elementToBeHigh.classList.add('flex');
-        hintedElements.push(document.getElementById(column + newRow));
+    // White pawns move up the board, so rank increases
+    if (rank < 8) {
+        possibleMoves.push(`${file}${rank + 1}`);
+        if (rank === 2) {
+            possibleMoves.push(`${file}${rank + 2}`);
+        }
     }
-    return hintedElements;
-}
+
+    return possibleMoves;
+};
